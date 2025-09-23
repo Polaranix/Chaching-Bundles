@@ -1,0 +1,12 @@
+{
+  "name": "Shopify App Development",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "forwardPorts": [3001],
+  "portsAttributes": {
+    "3001": {
+      "label": "Shopify App",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "npm install"
+}
