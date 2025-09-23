@@ -1,0 +1,79 @@
+{{ 'bundle-widget.css' | asset_url | stylesheet_tag }}
+
+<div id="bundle-widget-{{ block.id }}" class="bundle-widget-block" {{ block.shopify_attributes }}>
+  <!-- Widget content will be injected by JavaScript -->
+</div>
+
+<script>
+  // Widget configuration
+  window.bundleWidgetConfig = window.bundleWidgetConfig || {};
+  window.bundleWidgetConfig.appUrl = '{{ block.settings.app_url | default: "https://your-app-url.com" }}';
+  window.bundleWidgetConfig.blockId = '{{ block.id }}';
+  window.bundleWidgetConfig.showOnPDP = {{ block.settings.show_on_pdp | default: true }};
+  window.bundleWidgetConfig.showOnCart = {{ block.settings.show_on_cart | default: true }};
+</script>
+
+{{ 'bundle-widget.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Bundle & Save Widget",
+  "target": "section",
+  "available_if": "{{ app.metafields.bundle_widget.enabled }}",
+  "settings": [
+    {
+      "type": "url",
+      "id": "app_url",
+      "label": "App URL",
+      "default": "https://your-app-url.com",
+      "info": "The URL of your Bundle & Save app"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_pdp",
+      "label": "Show on Product Pages",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_cart",
+      "label": "Show on Cart Page",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "max_bundles",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Maximum bundles to show",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "widget_position",
+      "label": "Widget Position",
+      "options": [
+        {
+          "value": "before_form",
+          "label": "Before Add to Cart"
+        },
+        {
+          "value": "after_form",
+          "label": "After Add to Cart"
+        },
+        {
+          "value": "custom",
+          "label": "Custom Position"
+        }
+      ],
+      "default": "after_form"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle & Save Widget"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,23 @@
+api_version = "2023-10"
+
+[[extensions]]
+type = "theme_app_extension"
+name = "Bundle & Save Widget"
+handle = "bundle-widget"
+
+[extensions.settings]
+# Configure the extension settings
+include_app_block = true
+include_app_embed = false
+
+[[extensions.files]]
+name = "assets/bundle-widget.css"
+template = "assets/bundle-widget.css"
+
+[[extensions.files]]
+name = "assets/bundle-widget.js"
+template = "assets/bundle-widget.js"
+
+[[extensions.files]]
+name = "blocks/bundle-widget.liquid"
+template = "blocks/bundle-widget.liquid"

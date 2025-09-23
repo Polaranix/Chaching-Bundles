@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Shop {
+  id          String   @id
+  domain      String   @unique
+  installedAt DateTime @default(now())
+  plan        Plan     @default(FREE)
+  bundles     Bundle[]
+  
+  @@map("shops")
+}
+
+enum Plan {
+  FREE
+  PRO
+}
+
+model Bundle {
+  id               String        @id @default(cuid())
+  shopId           String
+  title            String
+  status           Status        @default(DRAFT)
+  type             BundleType
+  discountType     DiscountType
+  discountValue    Decimal       @db.Decimal(10, 2)
+  minQty           Int?
+  hiddenProductGid String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  items            BundleItem[]
+  shop             Shop          @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  
+  @@map("bundles")
+}
+
+model BundleItem {
+  id         String @id @default(cuid())
+  bundleId   String
+  productGid String
+  variantGid String
+  quantity   Int    @default(1)
+  bundle     Bundle @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+  
+  @@map("bundle_items")
+}
+
+enum Status {
+  DRAFT
+  ACTIVE
+}
+
+enum BundleType {
+  FIXED
+  MIX_MATCH
+}
+
+enum DiscountType {
+  PERCENT
+  AMOUNT
+}
+
+model BundleMetric {
+  id          String   @id @default(cuid())
+  shopId      String
+  bundleId    String
+  eventType   String   // impression, click, order
+  count       Int      @default(0)
+  lastUpdated DateTime @updatedAt
+  
+  @@unique([shopId, bundleId, eventType])
+  @@map("bundle_metrics")
+}
+
+// Shopify session storage (required by shopify-app-remix)
+model Session {
+  id          String    @id
+  shop        String
+  state       String
+  isOnline    Boolean   @default(false)
+  scope       String?
+  expires     DateTime?
+  accessToken String
+  userId      BigInt?
+  firstName   String?
+  lastName    String?
+  email       String?
+  accountOwner Boolean  @default(false)
+  locale      String?
+  collaborator Boolean? @default(false)
+  emailVerified Boolean? @default(false)
+  
+  @@map("sessions")
+}
