@@ -1,0 +1,37 @@
+# AI and NLP
+anthropic>=0.39.0
+openai>=1.12.0
+
+# Speech Recognition and Synthesis
+SpeechRecognition>=3.10.0
+pyttsx3>=2.90
+pyaudio>=0.2.14
+pvporcupine>=3.0.0  # Wake word detection
+
+# System Automation
+pyautogui>=0.9.54
+psutil>=5.9.8
+pygetwindow>=0.0.9
+keyboard>=0.13.5
+
+# Web and API
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+aiohttp>=3.9.0
+
+# Calendar and Email
+google-api-python-client>=2.100.0
+google-auth-httplib2>=0.2.0
+google-auth-oauthlib>=1.1.0
+
+# Utilities
+python-dotenv>=1.0.0
+schedule>=1.2.0
+watchdog>=3.0.0
+colorama>=0.4.6
+pillow>=10.1.0
+
+# WebSocket for frontend communication
+websockets>=12.0
+fastapi>=0.109.0
+uvicorn>=0.27.0

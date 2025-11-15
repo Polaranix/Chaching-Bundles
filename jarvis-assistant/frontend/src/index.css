@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-jarvis-blue/20;
+  }
+
+  body {
+    @apply bg-jarvis-dark text-jarvis-blue font-mono;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-jarvis-dark-light;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-jarvis-blue/50 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-jarvis-blue;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-jarvis-dark/80 backdrop-blur-md border border-jarvis-blue/30 rounded-lg;
+  }
+
+  .hologram-text {
+    @apply text-jarvis-blue text-shadow-glow;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+  }
+
+  .scan-line {
+    @apply absolute w-full h-px bg-gradient-to-r from-transparent via-jarvis-blue to-transparent;
+    animation: scan 4s linear infinite;
+  }
+
+  .grid-background {
+    background-image:
+      linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .glow-button {
+    @apply relative px-6 py-2 bg-transparent border border-jarvis-blue text-jarvis-blue rounded-lg
+           transition-all duration-300 hover:bg-jarvis-blue/20 hover:shadow-glow;
+  }
+
+  .glow-button::before {
+    @apply absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300;
+    content: '';
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+  }
+
+  .glow-button:hover::before {
+    @apply opacity-100;
+  }
+}
+
+/* Custom animations */
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
