@@ -1,0 +1,38 @@
+{
+  "name": "Shop",
+  "fields": [
+    {
+      "name": "shop_name",
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    {
+      "name": "access_token",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "scopes",
+      "type": "string"
+    },
+    {
+      "name": "installed_at",
+      "type": "datetime",
+      "default": "now()"
+    },
+    {
+      "name": "has_active_subscription",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "subscription_id",
+      "type": "string"
+    },
+    {
+      "name": "trial_ends_at",
+      "type": "datetime"
+    }
+  ]
+}

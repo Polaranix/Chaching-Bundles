@@ -1,0 +1,40 @@
+{
+  "name": "Product",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "price",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "image_url",
+      "type": "string"
+    },
+    {
+      "name": "shopify_product_id",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "inventory",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "shop_id",
+      "type": "reference",
+      "ref": "Shop"
+    }
+  ],
+  "rls": {
+    "select": "auth.shop_id = shop_id",
+    "insert": "auth.shop_id = shop_id",
+    "update": "auth.shop_id = shop_id",
+    "delete": "auth.shop_id = shop_id"
+  }
+}

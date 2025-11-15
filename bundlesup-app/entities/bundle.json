@@ -1,0 +1,93 @@
+{
+  "name": "Bundle",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "name": "bundle_type",
+      "type": "string",
+      "enum": ["fixed", "mix_match", "upsell", "frequently_together"],
+      "required": true
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "enum": ["active", "draft", "paused"],
+      "default": "draft"
+    },
+    {
+      "name": "pricing_strategy",
+      "type": "string",
+      "enum": ["fixed_price", "percentage_discount", "amount_discount"],
+      "required": true
+    },
+    {
+      "name": "discount_value",
+      "type": "number"
+    },
+    {
+      "name": "fixed_price",
+      "type": "number"
+    },
+    {
+      "name": "products",
+      "type": "json"
+    },
+    {
+      "name": "min_items",
+      "type": "number"
+    },
+    {
+      "name": "max_items",
+      "type": "number"
+    },
+    {
+      "name": "total_sales",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "total_revenue",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "conversion_rate",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "display_template",
+      "type": "string",
+      "enum": ["list", "grid", "tiered", "radio_list"],
+      "default": "grid"
+    },
+    {
+      "name": "display_settings",
+      "type": "json"
+    },
+    {
+      "name": "shop_id",
+      "type": "reference",
+      "ref": "Shop"
+    },
+    {
+      "name": "created_by",
+      "type": "reference",
+      "ref": "User"
+    }
+  ],
+  "rls": {
+    "select": "auth.shop_id = shop_id",
+    "insert": "auth.shop_id = shop_id",
+    "update": "auth.shop_id = shop_id",
+    "delete": "auth.shop_id = shop_id"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "BundleOrder",
+  "fields": [
+    {
+      "name": "bundle_id",
+      "type": "reference",
+      "ref": "Bundle",
+      "required": true
+    },
+    {
+      "name": "shop_id",
+      "type": "reference",
+      "ref": "Shop",
+      "required": true
+    },
+    {
+      "name": "order_id",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "discount_amount",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "total_amount",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "items_count",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "created_at",
+      "type": "datetime",
+      "default": "now()"
+    }
+  ],
+  "rls": {
+    "select": "auth.shop_id = shop_id",
+    "insert": "auth.shop_id = shop_id"
+  }
+}

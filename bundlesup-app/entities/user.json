@@ -1,0 +1,35 @@
+{
+  "name": "User",
+  "fields": [
+    {
+      "name": "email",
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    {
+      "name": "full_name",
+      "type": "string"
+    },
+    {
+      "name": "role",
+      "type": "string",
+      "enum": ["admin", "user"],
+      "default": "user"
+    },
+    {
+      "name": "has_completed_onboarding",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "shop_domain",
+      "type": "string"
+    },
+    {
+      "name": "shop_id",
+      "type": "reference",
+      "ref": "Shop"
+    }
+  ]
+}

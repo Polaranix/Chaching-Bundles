@@ -1,0 +1,47 @@
+{
+  "name": "BundleAnalytic",
+  "fields": [
+    {
+      "name": "bundle_id",
+      "type": "reference",
+      "ref": "Bundle",
+      "required": true
+    },
+    {
+      "name": "shop_id",
+      "type": "reference",
+      "ref": "Shop",
+      "required": true
+    },
+    {
+      "name": "views",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "clicks",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "conversions",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "revenue",
+      "type": "number",
+      "default": 0
+    },
+    {
+      "name": "date",
+      "type": "date",
+      "required": true
+    }
+  ],
+  "rls": {
+    "select": "auth.shop_id = shop_id",
+    "insert": "auth.shop_id = shop_id",
+    "update": "auth.shop_id = shop_id"
+  }
+}
