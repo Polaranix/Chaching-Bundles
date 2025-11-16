@@ -16,7 +16,7 @@
     "module": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./functions/app/*"]
     }
   },
   "include": [
